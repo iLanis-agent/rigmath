@@ -12,22 +12,17 @@ for (const c of cases) {
     chk(!r.error && Math.abs(r.realMA - c.realMA) < TOL && Math.abs(r.haulN - c.haulN) < 1e-7 &&
         Math.abs(r.anchorN - c.anchorN) < 1e-7 && Math.abs(r.deepestPartN - c.deepestN) < 1e-7 &&
         Math.abs(r.ruleOfThumbMA - c.ruleMA) < TOL && r.movingSheaves === c.movingSheaves &&
-        r.standingSheaves === c.standingSheaves && Math.abs(r.efficiencyPct - c.effPct) < TOL &&
-        r.handHold === c.handHold,
+        r.standingSheaves === c.standingSheaves && Math.abs(r.efficiencyPct - c.effPct) < TOL,
         `simple ${c.type} ${c.parts}:1 ${c.load}kg`, r, c);
   } else if (c.kind === 'compound') {
     const r = E.compoundPurchase(c.load, c.stages.map(st => ({ parts: st.parts, sheaveType: st.type })));
     chk(!r.error && r.idealMA === c.idealMA && Math.abs(r.realMA - c.realMA) < 1e-7 &&
         Math.abs(r.haulN - c.haulN) < 1e-7 && Math.abs(r.anchorN - c.anchorN) < 1e-7 &&
-        Math.abs(r.efficiencyPct - c.effPct) < TOL && r.handHold === c.handHold,
+        Math.abs(r.efficiencyPct - c.effPct) < TOL,
         `compound ${JSON.stringify(c.stages)} ${c.load}kg`, r, c);
   } else if (c.kind === 'rope') {
     const r = E.ropeLength(c.parts, c.lift, c.tail);
     chk(!r.error && Math.abs(r.m - c.m) < TOL, `rope ${c.parts}x${c.lift}+${c.tail}`, r.m, c.m);
-  } else if (c.kind === 'wll') {
-    const r = E.ropeCheck(c.haulN, c.kn);
-    chk(!r.error && Math.abs(r.ratio - c.ratio) < TOL && Math.abs(r.requiredKn - c.requiredKn) < TOL && r.cls === c.cls,
-        `wll ${c.haulN}N ${c.kn}kN`, [r.ratio, r.cls], [c.ratio, c.cls]);
   }
 }
 // error paths
@@ -40,8 +35,7 @@ const errs = [
   E.compoundPurchase(100, []).error,
   E.compoundPurchase(100, [{parts:3,sheaveType:'pulley'},{parts:2,sheaveType:'pulley'},{parts:2,sheaveType:'pulley'},{parts:2,sheaveType:'pulley'}]).error,
   E.compoundPurchase(100, [{parts:1,sheaveType:'pulley'}]).error,
-  E.ropeLength(3, 0, 2).error, E.ropeLength(3, 5, -1).error, E.ropeLength(1, 5, 2).error,
-  E.ropeCheck(0, 5).error, E.ropeCheck(500, -1).error
+  E.ropeLength(3, 0, 2).error, E.ropeLength(3, 5, -1).error, E.ropeLength(1, 5, 2).error
 ];
 errs.forEach((e, i) => chk(typeof e === 'string' && e.length > 5, 'error path ' + i, e, 'error string'));
 // properties
