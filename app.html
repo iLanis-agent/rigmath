@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rigmath - block and tackle truth-teller</title>
+<style>
+:root{--bg:#101408;--card:#1a2010;--ink:#eef3df;--mut:#a8b18b;--amber:#c9e05a;--line:#2e3a1c;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:26px 14px 60px}
+main{max-width:860px;margin:0 auto}
+a.back{color:var(--mut);text-decoration:none;font-size:14px}
+h1{font-size:30px;margin:6px 0 2px}h1 span{color:var(--amber)}
+.sub{color:var(--mut);margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.card h2{font-size:19px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+label{display:block;color:var(--mut);font-size:13px;margin-bottom:4px}
+input,select{width:100%;background:#131709;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px 10px;font-size:16px}
+button.ghost{background:#232c13;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 12px;font-size:14px;cursor:pointer;margin:10px 6px 0 0}
+button.ghost:hover{border-color:var(--amber)}
+.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin-top:12px}
+.vc{background:#131709;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.vc .k{color:var(--mut);font-size:12px;letter-spacing:1px}
+.vc .n{font-size:24px;font-weight:700;margin:4px 0}
+.vc .h{color:var(--mut);font-size:13px}
+.vc.ok .n{color:var(--ok)}.vc.warn .n{color:var(--warn)}.vc.bad .n{color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:15px;margin-top:12px}
+td,th{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+td.v{font-weight:700;white-space:nowrap}
+th{color:var(--mut);font-weight:600;font-size:13px}
+.note{color:var(--mut);font-size:13px;margin-top:10px}
+.err{display:none;background:#3a1220;border:1px solid var(--bad);color:#fecaca;border-radius:10px;padding:12px 14px;margin-bottom:14px}
+#rig{width:100%;max-width:340px;display:block;margin:14px auto 0}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="index.html">&larr; Rigmath</a>
+<h1>Rig<span>math</span></h1>
+<p class="sub">What your tackle really gives you, friction included. Everything updates live.</p>
+
+<div class="err" id="err"></div>
+
+<div class="card">
+<h2>1. The load and the tackle</h2>
+<div class="grid">
+<div><label>Load (kg)</label><input id="load" type="number" step="any" value="120"></div>
+<div><label>Parts of line (2-12)</label><input id="parts" type="number" step="1" value="3"></div>
+<div><label>Sheaves</label><select id="sheave">
+<option value="pulley" selected>Ball-bearing pulley (eff ~0.95)</option>
+<option value="bushing">Plain bushing block (eff ~0.90)</option>
+<option value="carabiner">Carabiner as pulley (eff ~0.60)</option>
+</select></div>
+</div>
+<button class="ghost" data-p="2" data-s="pulley">Gun tackle 2:1</button>
+<button class="ghost" data-p="3" data-s="pulley">Luff tackle 3:1</button>
+<button class="ghost" data-p="4" data-s="pulley">Two-fold 4:1</button>
+<button class="ghost" data-p="3" data-s="carabiner">Z-rig, carabiners</button>
+<button class="ghost" data-p="3" data-s="pulley">Z-rig, pulleys</button>
+<svg id="rig" viewBox="0 0 300 210" aria-label="tackle diagram"></svg>
+<div class="verdicts" id="simple"></div>
+<p class="note" id="simplenote"></p>
+</div>
+
+<div class="card">
+<h2>2. Compound it (optional)</h2>
+<div class="grid">
+<div><label>Stage 2 parts</label><input id="p2" type="number" step="1" value="2"></div>
+<div><label>Stage 2 sheaves</label><select id="s2">
+<option value="pulley" selected>Ball-bearing pulley</option>
+<option value="bushing">Plain bushing block</option>
+<option value="carabiner">Carabiner as pulley</option>
+</select></div>
+<div><label>Stage 3 parts (0 = off)</label><input id="p3" type="number" step="1" value="0"></div>
+<div><label>Stage 3 sheaves</label><select id="s3">
+<option value="pulley" selected>Ball-bearing pulley</option>
+<option value="bushing">Plain bushing block</option>
+<option value="carabiner">Carabiner as pulley</option>
+</select></div>
+</div>
+<div class="verdicts" id="compound"></div>
+<p class="note">Stage 2 hauls stage 1's hauling line. Leave stage 2 at 0 to skip the whole card. Friction compounds the way it really does - two honest 2.85:1 stages give 8.1:1, not the brochure's 9:1.</p>
+</div>
+
+<div class="card">
+<h2>3. Rope: length and strength</h2>
+<div class="grid">
+<div><label>Lift height (m)</label><input id="lift" type="number" step="any" value="4"></div>
+<div><label>Working tail (m)</label><input id="tail" type="number" step="any" value="2"></div>
+<div><label>Rope breaking strength (kN)</label><input id="mbs" type="number" step="any" value="12"></div>
+</div>
+<div class="verdicts" id="rope"></div>
+<p class="note" id="ropenote"></p>
+</div>
+</main>
+<script src="engine.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=1)=>v.toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d});
+function vc(k,n,h,cls){return `<div class="vc${cls?' '+cls:''}"><div class="k">${k}</div><div class="n">${n}</div><div class="h">${h||''}</div></div>`}
+function num(id){const v=parseFloat($(id).value);return isFinite(v)?v:NaN;}
+function showErr(m){const e=$('err');e.textContent=m;e.style.display='block';}
+function hideErr(){$('err').style.display='none';}
+function drawRig(n){
+ const W=300,top=26,bot=118,x0=46,dx=Math.min(30,(W-100)/Math.max(n-1,1));
+ let s=`<rect x="${x0-26}" y="${top-16}" width="${(n-1)*dx+52}" height="16" rx="6" fill="#2e3a1c"/>
+ <rect x="${x0-26}" y="${bot}" width="${(n-1)*dx+52}" height="16" rx="6" fill="#4a5a2a"/>
+ <line x1="${x0-6+(n-1)*dx/2}" y1="0" x2="${x0-6+(n-1)*dx/2}" y2="${top-16}" stroke="#a8b18b" stroke-width="3"/>`;
+ for(let i=0;i<n;i++){
+   const x=x0+i*dx;
+   if(i<n-1||true){
+     s+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${bot}" stroke="#c9e05a" stroke-width="3"/>`;
+   }
+ }
+ const xh=x0+(n-1)*dx;
+ s+=`<line x1="${xh}" y1="${top}" x2="${xh+34}" y2="${top+58}" stroke="#c9e05a" stroke-width="3"/>
+ <polygon points="${xh+34},${top+66} ${xh+28},${top+52} ${xh+40},${top+54}" fill="#c9e05a"/>
+ <text x="${xh+30}" y="${top+82}" fill="#a8b18b" font-size="11">haul</text>
+ <rect x="${x0-16}" y="${bot+30}" width="${(n-1)*dx+32}" height="34" rx="5" fill="#232c13" stroke="#2e3a1c"/>
+ <text x="${x0-6+(n-1)*dx/2}" y="${bot+52}" fill="#eef3df" font-size="12" text-anchor="middle">LOAD</text>
+ <line x1="${x0+(n-1)*dx/2}" y1="${bot+16}" x2="${x0+(n-1)*dx/2}" y2="${bot+30}" stroke="#a8b18b" stroke-width="3"/>`;
+ $('rig').innerHTML=s;
+}
+function run(){
+ hideErr();
+ const load=num('load'),parts=num('parts');
+ const r=engine.simplePurchase(load,parts,$('sheave').value);
+ if(r.error){showErr(r.error);$('simple').innerHTML='';$('rig').innerHTML='';return;}
+ drawRig(parts);
+ $('simple').innerHTML=
+  vc('REAL MECHANICAL ADVANTAGE',fmt(r.realMA,2)+' : 1','vs '+r.idealMA+':1 ideal (the brochure number)')
+ +vc('EFFICIENCY',fmt(r.efficiencyPct,0)+'%',r.sheaveLabel)
+ +vc('HAUL FORCE',fmt(r.haulKgf,1)+' kgf',fmt(r.haulN,0)+' N in your hands',r.handHold?'ok':'warn')
+ +vc('HAND-HOLDABLE',r.handHold?'Yes':'Not really',r.handHold?'one person can sustain this (25 kgf rule of thumb)':'over the 25 kgf rule of thumb - add parts or a progress capture',r.handHold?'ok':'warn')
+ +vc('ANCHOR SEES',fmt(r.anchorKgf,0)+' kgf','load + your haul tension (hauling downward)')
+ +vc('10% RULE SAYS',fmt(r.ruleOfThumbMA,2)+' : 1',r.movingSheaves+' moving sheave(s), '+r.standingSheaves+' standing - compare with the honest model');
+ $('simplenote').textContent=r.notes;
+ // compound
+ const p2=num('p2'),p3=num('p3');
+ if(p2>=2||p3>=2){
+   const stages=[{parts:parts,sheaveType:$('sheave').value}];
+   if(p2>=2)stages.push({parts:p2,sheaveType:$('s2').value});
+   if(p3>=2)stages.push({parts:p3,sheaveType:$('s3').value});
+   const c=engine.compoundPurchase(load,stages);
+   $('compound').innerHTML=c.error?vc('COMPOUND','&mdash;',c.error,'bad'):
+    vc('TOTAL REAL MA',fmt(c.realMA,2)+' : 1','vs '+c.idealMA+':1 ideal across '+stages.length+' stages')
+   +vc('FINAL HAUL',fmt(c.haulKgf,1)+' kgf',fmt(c.haulN,0)+' N',c.handHold?'ok':'warn')
+   +vc('EFFICIENCY',fmt(c.efficiencyPct,0)+'%','friction compounds with the stages');
+ } else {$('compound').innerHTML='';}
+ // rope
+ const rl=engine.ropeLength(parts,num('lift'),num('tail'));
+ const rc=engine.ropeCheck(r.haulN,num('mbs'));
+ $('rope').innerHTML=
+  (rl.error?vc('ROPE NEEDED','&mdash;',rl.error,'bad'):vc('ROPE NEEDED',fmt(rl.m,1)+' m',parts+' parts x lift + tail'))
+ +(rc.error?vc('STRENGTH','&mdash;',rc.error,'bad'):vc('STRENGTH',fmt(rc.ratio,1)+' : 1',rc.verdict,rc.cls))
+ +(rc.error?'':vc('MBS REQUIRED',fmt(rc.requiredKn,1)+' kN','for the 5:1 guidance at your haul tension'));
+ $('ropenote').textContent=(rl.error?'':rl.note+' ')+(rc.error?'':rc.note);
+}
+document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',run));
+document.querySelectorAll('button.ghost').forEach(b=>b.addEventListener('click',()=>{
+ $('parts').value=b.dataset.p;$('sheave').value=b.dataset.s;run();
+}));
+run();
+</script>
+</body>
+</html>
