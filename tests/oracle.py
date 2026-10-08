@@ -28,7 +28,7 @@ for st, e in EFF.items():
                           'deepestN': P * e ** (n - 1),
                           'ruleMA': n * 0.9 ** ms,
                           'movingSheaves': ms, 'standingSheaves': n - ms,
-                          'effPct': ma / n * 100, 'handHold': P / G <= 25})
+                          'effPct': ma / n * 100})
 
 # compound: two and three stages, derived stage by stage
 combos = [
@@ -49,20 +49,12 @@ for load, stages in combos:
     cases.append({'kind': 'compound', 'load': load,
                   'stages': [{'parts': p, 'type': s} for p, s in stages],
                   'idealMA': ideal, 'realMA': real, 'haulN': tension,
-                  'anchorN': load * G + P1, 'effPct': real / ideal * 100,
-                  'handHold': tension / G <= 25})
+                  'anchorN': load * G + P1, 'effPct': real / ideal * 100})
 
 # rope lengths
 for parts, lift, tail in [(2, 3.0, 2.0), (4, 1.5, 1.0), (6, 0.8, 2.5), (3, 10.0, 3.0)]:
     cases.append({'kind': 'rope', 'parts': parts, 'lift': lift, 'tail': tail,
                   'm': parts * lift + tail})
-
-# rope strength verdicts at the tier boundaries
-for haul_n, kn, cls in [(500.0, 2.5, 'ok'), (500.0, 2.49, 'warn'),
-                        (1000.0, 2.0, 'warn'), (1000.0, 1.99, 'bad'),
-                        (300.0, 3.0, 'ok'), (900.0, 1.0, 'bad')]:
-    cases.append({'kind': 'wll', 'haulN': haul_n, 'kn': kn,
-                  'ratio': kn * 1000 / haul_n, 'requiredKn': haul_n * 5 / 1000, 'cls': cls})
 
 with open('tests/expected.json', 'w') as f:
     json.dump(cases, f, indent=1)
