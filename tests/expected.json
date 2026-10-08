@@ -11,8 +11,7 @@
   "ruleMA": 1.8,
   "movingSheaves": 1,
   "standingSheaves": 1,
-  "effPct": 97.5,
-  "handHold": false
+  "effPct": 97.5
  },
  {
   "kind": "simple",
@@ -26,8 +25,7 @@
   "ruleMA": 1.8,
   "movingSheaves": 1,
   "standingSheaves": 1,
-  "effPct": 97.5,
-  "handHold": false
+  "effPct": 97.5
  },
  {
   "kind": "simple",
@@ -41,8 +39,7 @@
   "ruleMA": 2.7,
   "movingSheaves": 1,
   "standingSheaves": 2,
-  "effPct": 95.08333333333333,
-  "handHold": false
+  "effPct": 95.08333333333333
  },
  {
   "kind": "simple",
@@ -56,8 +53,7 @@
   "ruleMA": 2.7,
   "movingSheaves": 1,
   "standingSheaves": 2,
-  "effPct": 95.08333333333333,
-  "handHold": false
+  "effPct": 95.08333333333333
  },
  {
   "kind": "simple",
@@ -71,8 +67,7 @@
   "ruleMA": 3.24,
   "movingSheaves": 2,
   "standingSheaves": 2,
-  "effPct": 92.74687499999999,
-  "handHold": true
+  "effPct": 92.74687499999999
  },
  {
   "kind": "simple",
@@ -86,8 +81,7 @@
   "ruleMA": 3.24,
   "movingSheaves": 2,
   "standingSheaves": 2,
-  "effPct": 92.74687499999999,
-  "handHold": false
+  "effPct": 92.74687499999999
  },
  {
   "kind": "simple",
@@ -101,8 +95,7 @@
   "ruleMA": 4.050000000000001,
   "movingSheaves": 2,
   "standingSheaves": 3,
-  "effPct": 90.48762499999998,
-  "handHold": true
+  "effPct": 90.48762499999998
  },
  {
   "kind": "simple",
@@ -116,8 +109,7 @@
   "ruleMA": 4.050000000000001,
   "movingSheaves": 2,
   "standingSheaves": 3,
-  "effPct": 90.48762499999998,
-  "handHold": false
+  "effPct": 90.48762499999998
  },
  {
   "kind": "simple",
@@ -131,8 +123,7 @@
   "ruleMA": 4.3740000000000006,
   "movingSheaves": 3,
   "standingSheaves": 3,
-  "effPct": 88.30270312499998,
-  "handHold": true
+  "effPct": 88.30270312499998
  },
  {
   "kind": "simple",
@@ -146,8 +137,7 @@
   "ruleMA": 4.3740000000000006,
   "movingSheaves": 3,
   "standingSheaves": 3,
-  "effPct": 88.30270312499998,
-  "handHold": false
+  "effPct": 88.30270312499998
  },
  {
   "kind": "simple",
@@ -161,8 +151,7 @@
   "ruleMA": 5.2488,
   "movingSheaves": 4,
   "standingSheaves": 4,
-  "effPct": 84.14489217773436,
-  "handHold": true
+  "effPct": 84.14489217773436
  },
  {
   "kind": "simple",
@@ -176,8 +165,7 @@
   "ruleMA": 5.2488,
   "movingSheaves": 4,
   "standingSheaves": 4,
-  "effPct": 84.14489217773436,
-  "handHold": false
+  "effPct": 84.14489217773436
  },
  {
   "kind": "simple",
@@ -191,8 +179,7 @@
   "ruleMA": 1.8,
   "movingSheaves": 1,
   "standingSheaves": 1,
-  "effPct": 95.0,
-  "handHold": false
+  "effPct": 95.0
  },
  {
   "kind": "simple",
@@ -206,8 +193,7 @@
   "ruleMA": 1.8,
   "movingSheaves": 1,
   "standingSheaves": 1,
-  "effPct": 95.0,
-  "handHold": false
+  "effPct": 95.0
  },
  {
   "kind": "simple",
@@ -221,8 +207,7 @@
   "ruleMA": 2.7,
   "movingSheaves": 1,
   "standingSheaves": 2,
-  "effPct": 90.33333333333333,
-  "handHold": false
+  "effPct": 90.33333333333333
  },
  {
   "kind": "simple",
@@ -236,8 +221,7 @@
   "ruleMA": 2.7,
   "movingSheaves": 1,
   "standingSheaves": 2,
-  "effPct": 90.33333333333333,
-  "handHold": false
+  "effPct": 90.33333333333333
  },
  {
   "kind": "simple",
@@ -251,8 +235,7 @@
   "ruleMA": 3.24,
   "movingSheaves": 2,
   "standingSheaves": 2,
-  "effPct": 85.975,
-  "handHold": true
+  "effPct": 85.975
  },
  {
   "kind": "simple",
@@ -266,8 +249,7 @@
   "ruleMA": 3.24,
   "movingSheaves": 2,
   "standingSheaves": 2,
-  "effPct": 85.975,
-  "handHold": false
+  "effPct": 85.975
  },
  {
   "kind": "simple",
@@ -281,8 +263,7 @@
   "ruleMA": 4.050000000000001,
   "movingSheaves": 2,
   "standingSheaves": 3,
-  "effPct": 81.90200000000002,
-  "handHold": true
+  "effPct": 81.90200000000002
  },
  {
   "kind": "simple",
@@ -296,8 +277,7 @@
   "ruleMA": 4.050000000000001,
   "movingSheaves": 2,
   "standingSheaves": 3,
-  "effPct": 81.90200000000002,
-  "handHold": false
+  "effPct": 81.90200000000002
  },
  {
   "kind": "simple",
@@ -311,8 +291,7 @@
   "ruleMA": 4.3740000000000006,
   "movingSheaves": 3,
   "standingSheaves": 3,
-  "effPct": 78.09316666666668,
-  "handHold": true
+  "effPct": 78.09316666666668
  },
  {
   "kind": "simple",
@@ -326,8 +305,7 @@
   "ruleMA": 4.3740000000000006,
   "movingSheaves": 3,
   "standingSheaves": 3,
-  "effPct": 78.09316666666668,
-  "handHold": false
+  "effPct": 78.09316666666668
  },
  {
   "kind": "simple",
@@ -341,8 +319,7 @@
   "ruleMA": 5.2488,
   "movingSheaves": 4,
   "standingSheaves": 4,
-  "effPct": 71.19159875000001,
-  "handHold": true
+  "effPct": 71.19159875000001
  },
  {
   "kind": "simple",
@@ -356,8 +333,7 @@
   "ruleMA": 5.2488,
   "movingSheaves": 4,
   "standingSheaves": 4,
-  "effPct": 71.19159875000001,
-  "handHold": false
+  "effPct": 71.19159875000001
  },
  {
   "kind": "simple",
@@ -371,8 +347,7 @@
   "ruleMA": 1.8,
   "movingSheaves": 1,
   "standingSheaves": 1,
-  "effPct": 80.0,
-  "handHold": false
+  "effPct": 80.0
  },
  {
   "kind": "simple",
@@ -386,8 +361,7 @@
   "ruleMA": 1.8,
   "movingSheaves": 1,
   "standingSheaves": 1,
-  "effPct": 80.0,
-  "handHold": false
+  "effPct": 80.0
  },
  {
   "kind": "simple",
@@ -401,8 +375,7 @@
   "ruleMA": 2.7,
   "movingSheaves": 1,
   "standingSheaves": 2,
-  "effPct": 65.33333333333333,
-  "handHold": false
+  "effPct": 65.33333333333333
  },
  {
   "kind": "simple",
@@ -416,8 +389,7 @@
   "ruleMA": 2.7,
   "movingSheaves": 1,
   "standingSheaves": 2,
-  "effPct": 65.33333333333333,
-  "handHold": false
+  "effPct": 65.33333333333333
  },
  {
   "kind": "simple",
@@ -431,8 +403,7 @@
   "ruleMA": 3.24,
   "movingSheaves": 2,
   "standingSheaves": 2,
-  "effPct": 54.400000000000006,
-  "handHold": false
+  "effPct": 54.400000000000006
  },
  {
   "kind": "simple",
@@ -446,8 +417,7 @@
   "ruleMA": 3.24,
   "movingSheaves": 2,
   "standingSheaves": 2,
-  "effPct": 54.400000000000006,
-  "handHold": false
+  "effPct": 54.400000000000006
  },
  {
   "kind": "simple",
@@ -461,8 +431,7 @@
   "ruleMA": 4.050000000000001,
   "movingSheaves": 2,
   "standingSheaves": 3,
-  "effPct": 46.112,
-  "handHold": false
+  "effPct": 46.112
  },
  {
   "kind": "simple",
@@ -476,8 +445,7 @@
   "ruleMA": 4.050000000000001,
   "movingSheaves": 2,
   "standingSheaves": 3,
-  "effPct": 46.112,
-  "handHold": false
+  "effPct": 46.112
  },
  {
   "kind": "simple",
@@ -491,8 +459,7 @@
   "ruleMA": 4.3740000000000006,
   "movingSheaves": 3,
   "standingSheaves": 3,
-  "effPct": 39.72266666666667,
-  "handHold": false
+  "effPct": 39.72266666666667
  },
  {
   "kind": "simple",
@@ -506,8 +473,7 @@
   "ruleMA": 4.3740000000000006,
   "movingSheaves": 3,
   "standingSheaves": 3,
-  "effPct": 39.72266666666667,
-  "handHold": false
+  "effPct": 39.72266666666667
  },
  {
   "kind": "simple",
@@ -521,8 +487,7 @@
   "ruleMA": 5.2488,
   "movingSheaves": 4,
   "standingSheaves": 4,
-  "effPct": 30.72512,
-  "handHold": false
+  "effPct": 30.72512
  },
  {
   "kind": "simple",
@@ -536,8 +501,7 @@
   "ruleMA": 5.2488,
   "movingSheaves": 4,
   "standingSheaves": 4,
-  "effPct": 30.72512,
-  "handHold": false
+  "effPct": 30.72512
  },
  {
   "kind": "compound",
@@ -556,8 +520,7 @@
   "realMA": 5.562375,
   "haulN": 211.63621654419202,
   "anchorN": 1589.8906222611745,
-  "effPct": 92.70625,
-  "handHold": true
+  "effPct": 92.70625
  },
  {
   "kind": "compound",
@@ -576,8 +539,7 @@
   "realMA": 3.136,
   "haulN": 625.6377551020407,
   "anchorN": 2963.0204081632655,
-  "effPct": 52.26666666666667,
-  "handHold": false
+  "effPct": 52.26666666666667
  },
  {
   "kind": "compound",
@@ -596,8 +558,7 @@
   "realMA": 6.5341,
   "haulN": 135.12189896083623,
   "anchorN": 1347.584210526316,
-  "effPct": 81.67625,
-  "handHold": true
+  "effPct": 81.67625
  },
  {
   "kind": "compound",
@@ -620,8 +581,7 @@
   "realMA": 7.414874999999999,
   "haulN": 198.45243513882568,
   "anchorN": 2226.1153846153848,
-  "effPct": 92.6859375,
-  "handHold": true
+  "effPct": 92.6859375
  },
  {
   "kind": "rope",
@@ -650,53 +610,5 @@
   "lift": 10.0,
   "tail": 3.0,
   "m": 33.0
- },
- {
-  "kind": "wll",
-  "haulN": 500.0,
-  "kn": 2.5,
-  "ratio": 5.0,
-  "requiredKn": 2.5,
-  "cls": "ok"
- },
- {
-  "kind": "wll",
-  "haulN": 500.0,
-  "kn": 2.49,
-  "ratio": 4.98,
-  "requiredKn": 2.5,
-  "cls": "warn"
- },
- {
-  "kind": "wll",
-  "haulN": 1000.0,
-  "kn": 2.0,
-  "ratio": 2.0,
-  "requiredKn": 5.0,
-  "cls": "warn"
- },
- {
-  "kind": "wll",
-  "haulN": 1000.0,
-  "kn": 1.99,
-  "ratio": 1.99,
-  "requiredKn": 5.0,
-  "cls": "bad"
- },
- {
-  "kind": "wll",
-  "haulN": 300.0,
-  "kn": 3.0,
-  "ratio": 10.0,
-  "requiredKn": 1.5,
-  "cls": "ok"
- },
- {
-  "kind": "wll",
-  "haulN": 900.0,
-  "kn": 1.0,
-  "ratio": 1.1111111111111112,
-  "requiredKn": 4.5,
-  "cls": "bad"
  }
 ]
