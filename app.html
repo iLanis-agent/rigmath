@@ -31,11 +31,14 @@ td.v{font-weight:700;white-space:nowrap}
 th{color:var(--mut);font-weight:600;font-size:13px}
 .note{color:var(--mut);font-size:13px;margin-top:10px}
 .err{display:none;background:#3a1220;border:1px solid var(--bad);color:#fecaca;border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.boundary{background:#3a2a10;border:2px solid var(--warn);color:#fde68a;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:15px}
+.boundary b{color:#fff}
 #rig{width:100%;max-width:340px;display:block;margin:14px auto 0}
 </style>
 </head>
 <body>
 <main>
+<div class="boundary"><b>Educational estimates only - not safe working limits.</b> Every number here is an idealized static model. <b>Never use this for lifting people, rescue, climbing, or any life-safety rigging.</b> Real rigging needs the manufacturer's rated working loads, the correct hardware, and sign-off from a competent person. Dynamic loads, rigging geometry, knots and hardware strength cannot be reduced to a rope's breaking strength and a generic factor.</div>
 <a class="back" href="index.html">&larr; Rigmath</a>
 <h1>Rig<span>math</span></h1>
 <p class="sub">What your tackle really gives you, friction included. Everything updates live.</p>
@@ -84,11 +87,10 @@ th{color:var(--mut);font-weight:600;font-size:13px}
 </div>
 
 <div class="card">
-<h2>3. Rope: length and strength</h2>
+<h2>3. Rope length</h2>
 <div class="grid">
 <div><label>Lift height (m)</label><input id="lift" type="number" step="any" value="4"></div>
 <div><label>Working tail (m)</label><input id="tail" type="number" step="any" value="2"></div>
-<div><label>Rope breaking strength (kN)</label><input id="mbs" type="number" step="any" value="12"></div>
 </div>
 <div class="verdicts" id="rope"></div>
 <p class="note" id="ropenote"></p>
@@ -131,9 +133,8 @@ function run(){
  $('simple').innerHTML=
   vc('REAL MECHANICAL ADVANTAGE',fmt(r.realMA,2)+' : 1','vs '+r.idealMA+':1 ideal (the brochure number)')
  +vc('EFFICIENCY',fmt(r.efficiencyPct,0)+'%',r.sheaveLabel)
- +vc('HAUL FORCE',fmt(r.haulKgf,1)+' kgf',fmt(r.haulN,0)+' N in your hands',r.handHold?'ok':'warn')
- +vc('HAND-HOLDABLE',r.handHold?'Yes':'Not really',r.handHold?'one person can sustain this (25 kgf rule of thumb)':'over the 25 kgf rule of thumb - add parts or a progress capture',r.handHold?'ok':'warn')
- +vc('ANCHOR SEES',fmt(r.anchorKgf,0)+' kgf','load + your haul tension (hauling downward)')
+ +vc('HAUL FORCE (MODEL)',fmt(r.haulKgf,1)+' kgf',fmt(r.haulN,0)+' N static estimate - real rigs vary')
+ +vc('ANCHOR SEES (MODEL)',fmt(r.anchorKgf,0)+' kgf','load + haul tension, hauling downward, static only')
  +vc('10% RULE SAYS',fmt(r.ruleOfThumbMA,2)+' : 1',r.movingSheaves+' moving sheave(s), '+r.standingSheaves+' standing - compare with the honest model');
  $('simplenote').textContent=r.notes;
  // compound
@@ -145,17 +146,14 @@ function run(){
    const c=engine.compoundPurchase(load,stages);
    $('compound').innerHTML=c.error?vc('COMPOUND','&mdash;',c.error,'bad'):
     vc('TOTAL REAL MA',fmt(c.realMA,2)+' : 1','vs '+c.idealMA+':1 ideal across '+stages.length+' stages')
-   +vc('FINAL HAUL',fmt(c.haulKgf,1)+' kgf',fmt(c.haulN,0)+' N',c.handHold?'ok':'warn')
+   +vc('FINAL HAUL (MODEL)',fmt(c.haulKgf,1)+' kgf',fmt(c.haulN,0)+' N static estimate')
    +vc('EFFICIENCY',fmt(c.efficiencyPct,0)+'%','friction compounds with the stages');
  } else {$('compound').innerHTML='';}
  // rope
  const rl=engine.ropeLength(parts,num('lift'),num('tail'));
- const rc=engine.ropeCheck(r.haulN,num('mbs'));
  $('rope').innerHTML=
-  (rl.error?vc('ROPE NEEDED','&mdash;',rl.error,'bad'):vc('ROPE NEEDED',fmt(rl.m,1)+' m',parts+' parts x lift + tail'))
- +(rc.error?vc('STRENGTH','&mdash;',rc.error,'bad'):vc('STRENGTH',fmt(rc.ratio,1)+' : 1',rc.verdict,rc.cls))
- +(rc.error?'':vc('MBS REQUIRED',fmt(rc.requiredKn,1)+' kN','for the 5:1 guidance at your haul tension'));
- $('ropenote').textContent=(rl.error?'':rl.note+' ')+(rc.error?'':rc.note);
+  rl.error?vc('ROPE NEEDED','&mdash;',rl.error,'bad'):vc('ROPE NEEDED (ESTIMATE)',fmt(rl.m,1)+' m',parts+' parts x lift + tail');
+ $('ropenote').textContent=rl.error?'':rl.note+' What rope to use is a manufacturer-rating question, not a calculator question - see the boundary above.';
 }
 document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',run));
 document.querySelectorAll('button.ghost').forEach(b=>b.addEventListener('click',()=>{
