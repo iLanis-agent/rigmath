@@ -13,7 +13,6 @@ var SHEAVE_TYPES = {
   carabiner: { label: 'carabiner as pulley (eff ~0.60, rescue-literature range 0.5-0.65)', eff: 0.60 }
 };
 var G = 9.81;
-var HAND_HOLD_KGF = 25; // labeled rule of thumb for a sustained one-person haul
 
 function bad(v) { return !(typeof v === 'number' && isFinite(v)); }
 
@@ -48,7 +47,6 @@ function simplePurchase(loadKg, parts, sheaveType) {
     standingSheaves: standingSheaves,
     ruleOfThumbMA: n * Math.pow(0.9, movingSheaves), // labeled rule of thumb: 10% loss per moving sheave
     sheaveLabel: st.label,
-    handHold: P / G <= HAND_HOLD_KGF,
     notes: 'Anchor load assumes you haul downward off the standing block (anchor = load + haul tension). The rule-of-thumb column uses the common 10%-loss-per-moving-sheave shortcut; the geometric model is the honest one.'
   };
 }
@@ -78,7 +76,6 @@ function compoundPurchase(loadKg, stages) {
     anchorN: W + P1, // stage-1 standing block anchor (load + tension stage 1 is hauled with)
     anchorKgf: (W + P1) / G,
     stages: perStage,
-    handHold: tension / G <= HAND_HOLD_KGF,
     notes: 'Each stage multiplies: total real MA = product of the stage MAs. Anchor shown is the stage-1 standing block.'
   };
 }
@@ -91,24 +88,9 @@ function ropeLength(parts, liftM, tailM) {
   return { m: parts * liftM + tailM, note: 'One part travels the full lift for every part of line, plus your tail. Buy extra for knots and reeving mistakes.' };
 }
 
-// rope strength check against the highest part tension (the hauling part).
-// guidance labeled: 5:1 is a common working ratio for lifting with rope.
-function ropeCheck(haulN, breakingKn) {
-  if (bad(haulN) || haulN <= 0) return { error: 'Haul tension must be positive.' };
-  if (bad(breakingKn) || breakingKn <= 0) return { error: 'Breaking strength must be a positive number (kN).' };
-  var mbsN = breakingKn * 1000;
-  var ratio = mbsN / haulN;
-  var verdict, cls;
-  if (ratio >= 5) { verdict = 'OK at 5:1 or better (common rope-lifting guidance)'; cls = 'ok'; }
-  else if (ratio >= 2) { verdict = 'Under the common 5:1 guidance - think twice'; cls = 'warn'; }
-  else { verdict = 'Under 2:1 against breaking strength - do not lift this'; cls = 'bad'; }
-  return { ratio: ratio, requiredKn: haulN * 5 / 1000, verdict: verdict, cls: cls,
-    note: 'Compares the breaking strength you entered against the hauling-part tension, the highest tension in the system. The 5:1 figure is common guidance, not a standard for your rope - read the manufacturer sheet.' };
-}
-
 var engine = {
   simplePurchase: simplePurchase, compoundPurchase: compoundPurchase,
-  ropeLength: ropeLength, ropeCheck: ropeCheck,
-  CONST: { SHEAVE_TYPES: SHEAVE_TYPES, G: G, HAND_HOLD_KGF: HAND_HOLD_KGF }
+  ropeLength: ropeLength,
+  CONST: { SHEAVE_TYPES: SHEAVE_TYPES, G: G }
 };
 if (typeof module !== 'undefined') module.exports = engine;
